@@ -1,22 +1,23 @@
 # API de Gerenciamento de Tarefas
 
-Esta é uma API RESTful simples para gerenciamento de tarefas (To-Do List) construída com Flask. Permite criar, listar, atualizar e deletar tarefas.
+Esta é uma API RESTful simples para gerenciamento de tarefas (To-Do List) construída com Flask. Permite criar, listar, atualizar e deletar tarefas, com suporte a testes automatizados.
 
 ## Tecnologias Utilizadas
 
 - Python 3.x
 - Flask 2.3.0
-- Flask-SQLAlchemy 3.1.1
-- Flask-Cors 3.0.10
 - Werkzeug 2.3.0
+- Pytest 7.4.3 (para testes)
+- Requests 2.31.0
 
 ## Estrutura do Projeto
 
 ```
 project/
 ├── models/
-│   └── task.py         # Classe Task
+│   └── task.py        # Classe Task
 ├── app.py             # Arquivo principal da aplicação
+├── tests.py           # Testes automatizados
 ├── requirements.txt   # Dependências do projeto
 └── openapi.yaml       # Documentação OpenAPI
 ```
@@ -69,6 +70,7 @@ Body:
     "description": "Descrição opcional"
 }
 ```
+Resposta inclui o `id` da nova tarefa.
 
 ### Obter uma tarefa específica
 ```
@@ -103,7 +105,7 @@ A classe `Task` (em `models/task.py`) possui os seguintes atributos:
 
 ## Documentação OpenAPI
 
-A especificação completa da API está disponível no arquivo `swagger.yaml`.
+A especificação completa da API está disponível no arquivo `openapi.yaml`.
 
 ## Uso
 
@@ -118,6 +120,27 @@ Exemplo para listar tarefas:
 ```bash
 curl http://127.0.0.1:5000/tasks
 ```
+
+## Testes
+
+O arquivo `tests.py` contém testes automatizados para todos os endpoints. Para executar:
+
+1. Certifique-se de que a API está rodando em outra janela/terminal:
+```bash
+python app.py
+```
+
+2. Em um novo terminal, execute os testes:
+```bash
+pytest tests.py -v
+```
+
+Os testes verificam:
+- Criação de tarefas
+- Listagem de tarefas
+- Obtenção de tarefa específica
+- Atualização de tarefa
+- Deleção de tarefa
 
 ## Desenvolvimento
 
